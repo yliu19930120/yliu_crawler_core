@@ -36,8 +36,9 @@ public class Request {
 		
 		CloseableHttpClient client = HttpConnectionManager.getHttpClient();
 		CloseableHttpResponse response = null;
-		if(headers!=null)
+		if(headers!=null){
 			request.setHeaders(headers);
+			}
 		try {
 			response = client.execute(request);
 		} catch (ClientProtocolException e) {

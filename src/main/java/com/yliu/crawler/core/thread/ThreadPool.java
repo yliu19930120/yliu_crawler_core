@@ -1,7 +1,10 @@
 package com.yliu.crawler.core.thread;
 
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +15,7 @@ public class ThreadPool {
 	
 	private  int corePoolSize = 1;
 	
-	private ExecutorService pool;
+	private static ThreadPoolExecutor executor;
 	
 	public ThreadPool(int poolSize){
 		init(poolSize);
@@ -20,15 +23,16 @@ public class ThreadPool {
 	
 	private void init(int num){
 		log.info("初始化线程池数{}",num);
-		pool = Executors.newFixedThreadPool(corePoolSize);
+		executor = 
+				new ThreadPoolExecutor(num, 12, 4, TimeUnit.HOURS, new ArrayBlockingQueue<Runnable>(1));
 	}
 
 
 	public void execute(Runnable r){
-		pool.execute(r);
+		executor.execute(r);
 	}
 
 	public void close(){
-		pool.shutdown();
+		executor.shutdown();
 	}
 }

@@ -11,14 +11,14 @@ public class Timer {
 	
 	 public static String getTimeFormat(Long startTime){
 	    	long endTime   = System.currentTimeMillis(); 
-	    	long TotalTime = endTime - startTime; 
-			return formatTime(TotalTime);
+	    	long totalTime = endTime - startTime; 
+			return formatTime(totalTime);
 	}
 	 
 	 public static Long getTime(Long startTime){
 	    	long endTime   = System.currentTimeMillis(); 
-	    	long TotalTime = endTime - startTime; 
-			return TotalTime;
+	    	long totalTime = endTime - startTime; 
+			return totalTime;
 	}
 	 public static String formatTime(Long ms) {  
 		    Integer ss = 1000;  
