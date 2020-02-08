@@ -19,5 +19,5 @@ public interface BufferQueue {
 	
 	boolean isEmpty();
 	
-	
+	void clear();
 }

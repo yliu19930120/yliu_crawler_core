@@ -1,5 +1,6 @@
 package com.yliu.crawler.core.crawler;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -64,12 +65,14 @@ public class Crawler {
 	}
 
 	public Crawler addUrl(String... urls) {
-		for (String url : urls) {
-			pagesQueue.add(url);
-		}
-		return this;
+		return addUrl(Arrays.asList(urls));
 	}
 
+	public Crawler addUrl(List<String> urls) {
+		pagesQueue.addAll(urls);
+		return this;
+	}
+	
 	public Crawler setParser(Parser parser) {
 		this.parser = parser;
 		return this;
@@ -110,6 +113,7 @@ public class Crawler {
 	}
 
 	public void run(int threadNums) {
+		queue.clear();
 		while (!pagesQueue.isEmpty()) {
 			String url = pagesQueue.poll();
 			String res = get(url);
@@ -135,6 +139,7 @@ public class Crawler {
 			}
 
 		}
+		Thread.interrupted();
 		log.info("所有url翻页完毕");
 	}
 

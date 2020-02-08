@@ -46,6 +46,10 @@ public class JavaQueue implements BufferQueue{
 	public boolean isEmpty() {
 		return queue.isEmpty();
 	}
+	@Override
+	public void clear() {
+		queue.clear();
+	}
 
 
 }
